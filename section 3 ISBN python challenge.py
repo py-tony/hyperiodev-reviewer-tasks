@@ -94,12 +94,13 @@ isbn13("9780316066525") ➞ "Valid" isbn13("0330301824") ➞ "Invalid" isbn13("0
         #we're just gonna be adding one or substracting one to the last digit till we get a valid 13 isbn
         else:
             
-            n = 10
+            n = 10 #the range number we would use to change the last digit
+            prefix_isbn = "978" #this is the Standard prefix to change a 10 digit isbn to 13
             for i in range(n):
                 if i + int(isbn[-1]) < 9:
-                    isbn2 = "978"+isbn[:-1] + str(i + int(isbn[-1]))
+                    isbn2 = prefix_isbn + isbn[:-1] + str(i + int(isbn[-1]))
                 else:
-                    isbn2 = "978"+isbn[:-1] + str(int(isbn[-1]) - 1)
+                    isbn2 = prefix_isbn + isbn[:-1] + str(int(isbn[-1]) - 1)
                 
                 if isbn13tst(isbn2) == "Valid":
                     return isbn2
